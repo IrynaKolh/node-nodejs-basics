@@ -39,20 +39,6 @@ export const copy = async () => {
     } catch (error) {
         console.log ('FS operation failed');
     }
-
-    // fs.access(sourceWay)
-    // .then(() => {
-    //     fs.mkdir(destinationWay)
-    //     .then(() => {
-    //        files.forEach((file) => {
-    //             let sourceFile = path.join(sourceWay, file.name);
-    //             let copyFile = path.join(destinationWay, file.name);
-    //             fs.copyFile(sourceFile, copyFile, () => {});                                    
-    //         })
-    //     })  
-    //     .catch(() => console.log ('FS operation failed 1'));
-    //     })
-    // .catch(() => console.log ('FS operation failed'));  
 };
 
 copy();
