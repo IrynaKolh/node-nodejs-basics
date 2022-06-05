@@ -13,12 +13,12 @@ export const create = async () => {
     try {
         fs.writeFile(filePath, content, {flag: 'wx'}, (err) => {
             if (err) {
-                throw new Error ('FS operation failed');
+                throw new Error ('FS operation failed',{ cause: err });
             } 
             console.log('File is created successfully.');              
         });          
     } catch (err) {       
-        throw new Error ('FS operation failed');
+        throw new Error ('FS operation failed', { cause: err });
     }
 };
 create();
