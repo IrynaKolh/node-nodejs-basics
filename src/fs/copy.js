@@ -31,7 +31,7 @@ export const copy = async () => {
                 files.forEach((file) => {
                   let sourceFile = path.join(sourceWay, file.name);
                   let copyFile = path.join(destinationWay, file.name);  
-                  fs.copyFile(sourceFile, copyFile, () => {});        
+                  fs.copyFile(sourceFile, copyFile);        
                 });
               }
             });
