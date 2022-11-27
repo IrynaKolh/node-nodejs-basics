@@ -1,5 +1,5 @@
-import * as path from 'path';
-import {release, version} from 'os';
+import path from 'path';
+import { release, version } from 'os';
 import { createServer as createServerHttp } from 'node:http'
 import './files/c.js';
 
@@ -9,8 +9,8 @@ import { dirname } from 'node:path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const random = Math.random();
 
+const random = Math.random();
 let unknownObject;
 
 if (random > 0.5) {
@@ -34,3 +34,6 @@ export {
     unknownObject,
     createMyServer,
 };
+
+
+// cjsToEsm.cjs - rewrite it to it's equivalent in ECMAScript notation (and rename it to esm.mjs)

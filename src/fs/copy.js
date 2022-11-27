@@ -7,39 +7,26 @@ export const copy = async () => {
     // Write your code here
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = dirname(__filename);
+
     const destinationWay = path.join(__dirname, 'files-copy');
-    const sourceWay = path.join(__dirname, 'files'); 
-    
+    const sourceWay = path.join(__dirname, 'files');   
+    const errMsg = 'FS operation failed';  
     
     try {
-        fs.mkdir(destinationWay, {recursive: true}, () => {
-            fs.readdir(sourceWay, (err) => {
-            if (err) {
-                console.log(err);
-            } else {        
-                copyFiles();              
-            }      
-            });
-        });
-           
-          
-          function copyFiles() {
-            fs.readdir(sourceWay, { withFileTypes: true }, (err, files) => {
-              if (err) {
-                console.error(err);
-              } else {
-                files.forEach((file) => {
-                  let sourceFile = path.join(sourceWay, file.name);
-                  let copyFile = path.join(destinationWay, file.name);  
-                  fs.copyFile(sourceFile, copyFile);        
-                });
-              }
-            });
-          }
+       await fs.mkdir(destinationWay);   
+       const fileNames = await fs.readdir(sourceWay, { withFileTypes: true});
+       for (let file of fileNames) {
+        await fs.copyFile(
+          path.join(sourceWay, file.name),
+          path.join(destinationWay, file.name)
+        );
+      }
     } catch (error) {
-        console.log ('FS operation failed');
+        throw new Error(errMsg);
     }
 };
 
 copy();
 
+// copy.js - implement function that copies folder files files with all its content into folder files_copy at the same level 
+// (if files folder doesn't exists or files_copy has already been created Error with message FS operation failed must be thrown)

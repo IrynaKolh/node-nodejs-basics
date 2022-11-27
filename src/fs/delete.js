@@ -7,16 +7,17 @@ export const remove = async () => {
     // Write your code here 
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = dirname(__filename);
+    const errMsg = 'FS operation failed';  
 
     try {
-        fs.unlink(
-            path.join(__dirname, 'files', 'fileToRemove.txt'),
-            error => {
-                if (error) throw new Error('FS operation failed');            
-            }
-        )
-    } catch (error) {
-        throw new Error('FS operation failed');  
+        await fs.rm(
+            path.join(__dirname, 'files', 'fileToRemove.txt')          
+        );
+    } catch {
+        throw new Error(errMsg);  
     }
 };
 remove();
+
+// delete.js - implement function that deletes file fileToRemove.txt 
+// (if there's no file fileToRemove.txt Error with message FS operation failed must be thrown)

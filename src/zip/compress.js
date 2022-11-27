@@ -24,3 +24,6 @@ export const compress = async () => {
 };
 
 compress();
+
+
+// compress.js - implement function that compresses file fileToCompress.txt to archive.gz using zlib and Streams API

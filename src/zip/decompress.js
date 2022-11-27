@@ -24,3 +24,7 @@ export const decompress = async () => {
 };
 
 decompress();
+
+
+// decompress.js - implement function that decompresses archive.gz back to the 
+// fileToCompress.txt with same content as before compression using zlib and Streams API

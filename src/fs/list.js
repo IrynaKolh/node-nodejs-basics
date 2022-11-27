@@ -7,25 +7,18 @@ export const list = async () => {
     // Write your code here 
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = dirname(__filename);
+    const sourceWay = path.join(__dirname, 'files');
+    const errMsg = 'FS operation failed';  
 
-    const fileWay = path.join(__dirname, 'files');
     try {
-        fs.readdir(fileWay, (err, files) => {
-            if (err) throw new Error('FS operation failed');
-            files.forEach((file) => {
-                fs.stat(path.join(fileWay, `/${file.name}`), (err, stats) => {
-                    if (err) throw new Error('FS operation failed');
-                    if (file.isFile()) {
-                      const type = path.extname(file.name);
-                      const name = path.basename(file.name, type);      
-                      console.log(`${name}.${type}`);
-                    }
-                  });
-            });
-          });
+        const filesNames = await fs.readdir(sourceWay, { withFileTypes: true });
+        filesNames.forEach(file => console.log(file.name));
     } catch (err) {
-        throw new Error('FS operation failed');
+        throw new Error(errMsg);
     }
 };
 list();
+
+// list.js - implement function that prints all array of filenames from files folder into console 
+// (if files folder doesn't exists Error with message FS operation failed must be thrown)
 
